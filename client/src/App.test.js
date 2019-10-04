@@ -19,12 +19,16 @@ describe("DarkModeSetter", () => {
   });
 });
 
-// describe("playersList", () => {
-//   it('PlayersList renders without crashing', () => {
-//     const div=document.createElement("div");
-//     ReactDOM.render(<PlayersList />, div);
-//   });
-// });
+test('contains header', () => {
+  const { getByText } = rtl.render(<App />);
+  getByText(/Women's world cup/i);
+});
+
+test('renders player data', async () => {
+  const { findByText } = rtl.render(<App />);
+  findByText(/Alex Morgan/i);
+});
+
 
 
 

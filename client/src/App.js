@@ -27,6 +27,7 @@ class App extends React.Component {
   render() {
     return (
       <div className="App">
+        
         <DarkModeSetter />
       <PlayersList 
        playersList={this.state.playersList} />

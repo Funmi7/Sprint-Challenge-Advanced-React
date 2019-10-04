@@ -2,6 +2,7 @@ import React from 'react';
 import './App.css';
 import axios from 'axios';
 import PlayersList from './components/PlayersList';
+import DarkModeSetter from './components/DarkModeSetter'
 
 
 const playersAPI = 'http://localhost:5000/api/players'
@@ -26,6 +27,7 @@ class App extends React.Component {
   render() {
     return (
       <div className="App">
+        <DarkModeSetter />
       <PlayersList 
        playersList={this.state.playersList} />
       </div>

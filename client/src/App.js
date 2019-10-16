@@ -1,26 +1,40 @@
 import React from 'react';
-import logo from './logo.svg';
 import './App.css';
+import axios from 'axios';
+import PlayersList from './components/PlayersList';
+import DarkModeSetter from './components/DarkModeSetter'
 
-function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+
+const playersAPI = 'http://localhost:5000/api/players'
+class App extends React.Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      playersList : []
+    }
+  }
+
+  componentDidMount() {
+    axios.get(playersAPI)
+    .then(response => {
+      this.setState({playersList: response.data})
+      console.log(response.data)
+    })
+    .catch(error => {
+      console.log('Error: ', error)
+    })
+  }
+  render() {
+    return (
+      <div className="App">
+        
+        <DarkModeSetter />
+      <PlayersList 
+       playersList={this.state.playersList} />
+      </div>
+    );
+  }
+ 
 }
 
 export default App;
